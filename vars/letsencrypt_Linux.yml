@@ -1,0 +1,7 @@
+---
+# var template for letsencrypt (certbot) on Linux
+
+certhelper_fullchain: "{{ certhelper_folder }}/fullchain.pem"
+certhelper_cert: "{{ certhelper_folder }}/cert.pem"
+certhelper_key: "{{ certhelper_folder }}/privkey.pem"
+certhelper_folder: "/etc/letsencrypt/live/{{ _cert.name }}"

@@ -1,0 +1,12 @@
+---
+
+- name: include proper var template
+  include_vars:
+    file: "{{ certhelper_vars }}"
+
+- name: process cert {{ item.name }}
+  include_tasks: single.yml
+  vars:
+    _cert: "{{ item }}"
+  with_items:
+  - "{{ certhelper_certs }}"

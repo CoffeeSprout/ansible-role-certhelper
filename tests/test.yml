@@ -1,0 +1,22 @@
+---
+#acme.sh on FreeBSD (all defaults)
+- hosts: lbs
+  become: True
+  serial: 1
+  vars:
+    certhelper_certs:
+    - name: example.com
+    certhelper_certhost: "letsencrypt.example.com"
+  roles:
+  - role: coffeesprout.certhelper
+
+- hosts: lbs
+  become: True
+  serial: 1
+  vars:
+    certhelper_certs:
+    - name: example.com
+    certhelper_certhost: "letsencrypt.example.com"
+    certhelper_vars: "letsencrypt_Linux.yml"
+  roles:
+  - role: coffeesprout.certhelper

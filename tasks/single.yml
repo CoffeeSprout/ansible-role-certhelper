@@ -1,0 +1,24 @@
+---
+# tasks file for coffeesprout.certhelper
+
+- name: slurp the fullchain for {{ _cert.name }}
+  slurp:
+    src: "{{ _cert.fullchain | default(certhelper_fullchain) }}"
+  delegate_to: "{{ certhelper_certhost | default(inventory_hostname) }}"
+  register: certhelper_fullchain_content
+- name: slurp the certificate for {{ _cert.name }}
+  slurp:
+    src: "{{ _cert.cert | default(certhelper_cert) }}"
+  delegate_to: "{{ certhelper_certhost | default(inventory_hostname) }}"
+  register: certhelper_cert_content
+- name: slurp the key for {{ _cert.name }}
+  slurp:
+    src: "{{ _cert.key | default(certhelper_key) }}"
+  delegate_to: "{{ certhelper_certhost | default(inventory_hostname) }}"
+  register: certhelper_key_content
+- name: combine fullchain and key for haproxy
+  template:
+    dest: "/var/db/acme/certs/haproxy_export/{{ _cert }}-combined"
+    src: "{{ certhelper_template }}"
+  notify:
+  - "{{ certhelper_handler }}"

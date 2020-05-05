@@ -1,0 +1,7 @@
+---
+# var template for acme.sh on FreeBSD (under the acme account)
+
+certhelper_fullchain: "{{ certhelper_folder }}/fullchain.cer"
+certhelper_cert: "{{ certhelper_folder }}/{{ _cert.name }}.cer"
+certhelper_key: "{{ certhelper_folder }}/{{ _cert.name }}.key"
+certhelper_folder: "/var/db/acme/certs/{{ _cert.name }}"
