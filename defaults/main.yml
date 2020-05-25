@@ -2,6 +2,6 @@
 # defaults file for coffeesprout.certhelper
 certhelper_vars: "acme_sh_FreeBSD.yml" 
 
-certhelper_destination: "/var/db/acme/certs/haproxy_export/{{ item }}-combined"
+certhelper_destination: "/var/db/acme/certs/haproxy_export/{{ _cert.name }}-combined"
 certhelper_handler: "reload haproxy"
 certhelper_template: "certbundle.j2"
