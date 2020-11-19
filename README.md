@@ -22,7 +22,8 @@ Role Variables
 
 Defines the default locations and names to gather the certificates from; See below
 
-    certhelper_destination: "/var/db/acme/certs/haproxy_export/{{ item }}-combined"
+    certhelper_destination: "{{ certhelper_destination_folder }}/{{ _cert.name }}-combined"
+    certhelper_destination_folder: "/var/db/acme/certs/haproxy_export"
 
 Define where the resulting file should be stored on the loadbalancer
 
