@@ -16,7 +16,7 @@
     src: "{{ _cert.key | default(certhelper_key) }}"
   delegate_to: "{{ certhelper_certhost | default(inventory_hostname) }}"
   register: certhelper_key_content
-- name: combine fullchain and key for haproxy
+- name: combine fullchain and key for haproxy to {{ certhelper_destination }}
   template:
     dest: "{{ certhelper_destination }}"
     src: "{{ certhelper_template }}"
